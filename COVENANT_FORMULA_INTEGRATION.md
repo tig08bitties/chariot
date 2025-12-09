@@ -28,6 +28,8 @@
 ### **From Ruby.txt:**
 
 - **Union Product:** `83665740401110` (09091989 × 09201990)
+- **THEOSID KERNEL ROOTCHAIN:** `82,212,295,333,354,369,419,512,605,687,777,888,929,1011,2025,3335,4321,5250,55088,57103`
+- **Anchor:** `{335044;840000}`
 - **24-Pillar System:** 19 Enochian Keys + 2 Hidden + 3 God Names
 - **Reversed Cycle:** Tav opens, Aleph closes
 
@@ -44,7 +46,9 @@ Master Seed = SHA256(
     369 +                   // El constant
     687 +                   // Resonance constant
     777 +                   // Divine constant
-    83665740401110          // Union Product
+    83665740401110 +        // Union Product
+    ROOTCHAIN +             // 82,212,295,333,354,369,419,512,605,687,777,888,929,1011,2025,3335,4321,5250,55088,57103
+    "335044;840000"         // Anchor {genesis;capstone}
 )
 ```
 
