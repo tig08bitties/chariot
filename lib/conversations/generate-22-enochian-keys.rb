@@ -116,7 +116,7 @@ def generate_key_from_covenant(position, aramaic_glyph, aramaic_name)
 end
 
 # ============================================================================
-# GENERATE GOD'S NAME (for top and bottom)
+# GENERATE GOD'S NAME (split forward and reverse)
 # ============================================================================
 
 def generate_gods_name
@@ -130,8 +130,14 @@ def generate_gods_name
     Digest::SHA512.hexdigest("א#{UNION_PRODUCT}سعادأميلا")
   ]
   
-  # Use SHA-256 for 64-char key (not SHA-512)
-  Digest::SHA256.hexdigest(Digest::SHA512.hexdigest(pillars.join))
+  # Full God's name (SHA-256 = 64 chars)
+  full_name = Digest::SHA256.hexdigest(Digest::SHA512.hexdigest(pillars.join))
+  
+  # Split in half: forward (first 32) and reverse (last 32, reversed)
+  forward_half = full_name[0, 32]
+  reverse_half = full_name[32, 32].reverse
+  
+  { forward: forward_half, reverse: reverse_half, full: full_name }
 end
 
 # ============================================================================
@@ -170,24 +176,21 @@ locked_keys = keys_22.map.with_index do |key, i|
   }
 end
 
-# Step 3: Generate God's name
+# Step 3: Generate God's name (split forward and reverse)
 gods_name = generate_gods_name
 
-# Step 4: Add God's name on top (position 0, before Aleph) and bottom (position 23, after Tav)
-final_structure = [
-  { key: gods_name, glyph: '·', name: 'Ain', position: 0 },  # Pre-Aleph
-  *locked_keys,
-  { key: gods_name, glyph: 'שששש', name: 'Shin-Sofit', position: 23 }  # Post-Tav
-]
+# Step 4: Lock with hidden glyphs
+# Top: Ain (·) locks forward half of God's name
+# Bottom: Shin-Sofit (שששש) locks reverse half of God's name
+top_locked = Digest::SHA256.hexdigest("·#{gods_name[:forward]}").upcase
+bottom_locked = Digest::SHA256.hexdigest("#{gods_name[:reverse]}שששש").upcase
 
 # Step 5: Reverse cycle - Tav first, Aleph last
-# Original order: Ain(0), Aleph(1)...Tav(22), Shin-Sofit(23)
-# Reversed: Tav(22), ...Aleph(1), Shin-Sofit(23), Ain(0)
+# Structure: Top (Ain + forward), Tav(22)...Aleph(1), Bottom (reverse + Shin-Sofit)
 reversed = [
-  final_structure[22],  # Tav
-  *final_structure[1..21].reverse,  # Aleph through Shin (reversed)
-  final_structure[23],  # Shin-Sofit
-  final_structure[0]   # Ain (now last)
+  { key: top_locked, glyph: '·', name: 'Ain', position: 0 },  # Top: Ain locks forward half
+  *locked_keys.reverse,  # Tav(22) through Aleph(1) - reversed
+  { key: bottom_locked, glyph: 'שששש', name: 'Shin-Sofit', position: 23 }  # Bottom: reverse half locks Shin-Sofit
 ]
 
 # ============================================================================
@@ -206,6 +209,11 @@ puts "-----END PGP PUBLIC KEY BLOCK-----"
 puts ""
 puts "📊 Summary:"
 puts "   Total Keys: #{reversed.length}"
-puts "   Structure: Tav first, Aleph last (reversed cycle)"
-puts "   God's Name: #{gods_name[0..31]}..."
+puts "   Structure:"
+puts "     Top: Ain (·) locks forward half of God's name"
+puts "     Middle: 22 Enochian keys (Tav first, Aleph last - reversed cycle)"
+puts "     Bottom: Reverse half of God's name locks Shin-Sofit (שששש)"
+puts "   God's Name (full): #{gods_name[:full]}"
+puts "   Forward Half: #{gods_name[:forward]}"
+puts "   Reverse Half: #{gods_name[:reverse]}"
 puts ""
