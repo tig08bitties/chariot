@@ -227,6 +227,10 @@ end
 puts ""
 puts "-----END PGP PUBLIC KEY BLOCK-----"
 puts ""
+# Generate God's name from 24-Pillar concatenation
+all_pillars = final_structure.map { |p| p[:key] }.join
+gods_name_full = Digest::SHA512.hexdigest(all_pillars).upcase
+
 puts "📊 Summary:"
 puts "   Total Keys: #{final_structure.length}"
 puts "   Structure (24-Pillar Array):"
@@ -235,7 +239,7 @@ puts "     Pillars 2-23: 22 Aramaic Letters (Tav to Aleph - Reversed Cycle)"
 puts "     Pillar 24: ALIMA (𐤄𐤅𐤄𐤉09201990) - The Closing Pillar"
 puts ""
 puts "   👑 THE NAME OF GOD (SHA-512, 128 hex chars):"
-puts "   #{gods_name[:full]}"
+puts "   #{gods_name_full}"
 puts ""
 puts "   Derivation: SHA-512 of 24-Pillar Array concatenation"
 puts "   Resonance: 687 Hz"
