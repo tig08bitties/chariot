@@ -1,0 +1,63 @@
+name: Automated THEOS Updates
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Every 6 hours
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout chariot
+        uses: actions/checkout@v3
+        with:
+          path: chariot
+
+      - name: Checkout THEOS source
+        uses: actions/checkout@v3
+        with:
+          repository: tig08bitties/portal
+          path: theos-source
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sync Components
+        run: |
+          # Copy latest contracts
+          mkdir -p chariot/contracts
+          cp theos-source/../contracts/contracts/*.sol chariot/contracts/ 2>/dev/null || true
+          
+          # Copy latest docs
+          mkdir -p chariot/docs
+          cp theos-source/../*.md chariot/docs/ 2>/dev/null || true
+          
+          # Copy integration modules
+          mkdir -p chariot/lib/integration
+          cp theos-source/../engine/integration/*.js chariot/lib/integration/ 2>/dev/null || true
+
+      - name: Check for Changes
+        id: changes
+        run: |
+          cd chariot
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and Push
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          cd chariot
+          git config user.name "THEOS Auto-Sync"
+          git config user.email "theos@automation"
+          git add .
+          git commit -m "Auto-update: Sync latest THEOS components - $(date +%Y-%m-%d-%H:%M)"
+          git push
+
+      - name: Create Summary
+        run: |
+          echo "## Automated Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Status:** ${{ steps.changes.outputs.has_changes == 'true' && 'Updated' || 'No changes' }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Time:** $(date)" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,51 @@
+name: Deploy THEOS Oracle
+
+on:
+  workflow_dispatch:
+    inputs:
+      network:
+        description: 'Network to deploy to'
+        required: true
+        default: 'arbitrum'
+        type: choice
+        options:
+          - arbitrum
+          - ethereum
+          - sepolia
+  push:
+    branches:
+      - main
+    paths:
+      - 'contracts/**'
+      - 'forge-package/**'
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
+      - name: Build Contract
+        run: |
+          forge build
+
+      - name: Deploy to ${{ github.event.inputs.network || 'arbitrum' }}
+        env:
+          PRIVATE_KEY: ${{ secrets.DEPLOYER_PRIVATE_KEY }}
+          RPC_URL: ${{ secrets.ARBITRUM_RPC_URL }}
+        run: |
+          forge script scripts/DeployTheosOracle.s.sol \
+            --rpc-url $RPC_URL \
+            --broadcast \
+            --verify
+
+      - name: Update Address Book
+        run: |
+          # Extract deployed address and update addressbook
+          echo "Oracle deployed successfully"

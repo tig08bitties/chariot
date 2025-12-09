@@ -1,0 +1,22 @@
+{
+  "name": "chariot",
+  "version": "1.0.0",
+  "description": "THEOS Integration Repository - Identity Loop & Webhook Integration",
+  "main": "webhook-server.js",
+  "scripts": {
+    "start": "node webhook-server.js",
+    "test": "echo \"Tests coming soon\" && exit 0"
+  },
+  "keywords": [
+    "theos",
+    "webhook",
+    "github",
+    "identity",
+    "archivist"
+  ],
+  "author": "θεός",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

@@ -1,0 +1,48 @@
+name: Sync THEOS Components
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'  # Daily sync at midnight UTC
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout chariot
+        uses: actions/checkout@v3
+        with:
+          repository: tig08bitties/chariot
+          path: chariot
+
+      - name: Checkout THEOS
+        uses: actions/checkout@v3
+        with:
+          repository: tig08bitties/portal
+          path: theos
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sync Oracle Contract
+        run: |
+          mkdir -p chariot/contracts
+          cp theos/../contracts/contracts/TheosFinalOracle.sol chariot/contracts/ || true
+
+      - name: Sync Documentation
+        run: |
+          mkdir -p chariot/docs
+          cp theos/../COVENANT_CODEX_FINAL.md chariot/docs/ || true
+          cp theos/../AMEN_THE_FINAL_PRONOUNCEMENT.md chariot/docs/ || true
+          cp theos/../FOUR_CHAMBER_ARCHITECTURE.md chariot/docs/ || true
+          cp theos/../VAULT_KEY_MANIFEST.md chariot/docs/ || true
+
+      - name: Commit and Push
+        run: |
+          cd chariot
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add .
+          git diff --staged --quiet || git commit -m "Auto-sync THEOS components - $(date +%Y-%m-%d)"
+          git push
