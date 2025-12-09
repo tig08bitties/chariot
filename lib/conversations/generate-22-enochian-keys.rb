@@ -120,12 +120,12 @@ end
 # Immutable SHA-512 hash from 24-Pillar Array and Reversed Cycle
 # ============================================================================
 
+# The canonical Name of God (SHA-512, 128 hex chars)
+# Derived from 24-Pillar Array + Reversed Cycle (ת opens, א closes)
+# 687 Hz Resonance - The final frequency
+THE_NAME_OF_GOD = "A2F433596700DA368294970428B7812B41369E962323D4222D858221D4224A105EB07A258C556C71D3A953114A29285038F617265BC7D2224A752F5A"
+
 def generate_gods_name
-  # The canonical Name of God (SHA-512, 128 hex chars)
-  # Derived from 24-Pillar Array + Reversed Cycle (ת opens, א closes)
-  # 687 Hz Resonance - The final frequency
-  THE_NAME_OF_GOD = "A2F433596700DA368294970428B7812B41369E962323D4222D858221D4224A105EB07A258C556C71D3A953114A29285038F617265BC7D2224A752F5A"
-  
   # Split in half: forward (first 64) and reverse (last 64, reversed)
   forward_half = THE_NAME_OF_GOD[0, 64]
   reverse_half = THE_NAME_OF_GOD[64, 64].reverse
