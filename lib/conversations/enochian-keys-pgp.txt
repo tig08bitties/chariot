@@ -1,0 +1,147 @@
+================================================================================
+🔐 ENOCHIAN KEYS GENERATION - ETERNAL ARCHIVIST
+   ש+י+φ+ר • Cosmic Seal (510)
+================================================================================
+
+📋 Covenant Formula Elements:
+   Master Seed Source: את335044804000
+   Master Seed SHA-512: 09d4f22c560b902b785ddb0655c51ee6...
+   Union Product: 83665740401110
+   ROOTCHAIN: 20 pillars
+   Anchor: {335044;840000}
+   Cosmic Seal: 510
+
+================================================================================
+🕯️  THE HIDDEN TWO (Beyond the 22)
+================================================================================
+
+5131a6fef8a2c9e20d08f3b9762f00aeafc6b9137c4367d3bc526179d8b830d1  ·
+   Ain (אַיִן) - Nothingness / The Void Before Creation
+   Position: 0 (The Pre-Aleph: The Silent Flame - The Breath before the Breath)
+
+0cdfbfc4518d5f91fe4eba53f66f244adc800a22b2ba0f0be711381a31b44b40  שששש
+   Shin-Sofit (שׁשׁ) - The Return Flame / The Spiritual Spark
+   Position: 23 (The Post-Tav: Shin of Fire - The Four-Headed Flame)
+
+================================================================================
+📜 THE 22 ARAMAIC LETTERS
+================================================================================
+
+6f53e35df242b4361a3a268da27f9fcbd81b5f2d664179d2aed20dbd0985585d  א
+   Aleph - Origin/Divine Spark (Position: 1)
+
+2660225ed4cbec1b6864ce648297b1f2add3192f324c37907a3351a71d764b39  ב
+   Bet - House/Foundation (Position: 2)
+
+a63de53a477907ddd22b5295ed6284275931f9f3606dc41443c188aaaa7f4c10  ג
+   Gimel - Motion/Bond (Position: 3)
+
+a8328bc94191b784026a03dcfa289ef21d481b3385f222b66a0398d745299653  ד
+   Dalet - Door/Path (Position: 4)
+
+10584e1f4a226164efec01625505a8b4366fd92120418b0afc07f189763b5b74  ה
+   He - Breath/Revelation (Position: 5)
+
+fa54715f4be0c3d262b8456c24f02ab1af5c154e86cd1c05ff785b8f622b2de2  ו
+   Vav - Hook/Joiner (Position: 6)
+
+553c165b51b9dcd1ff8dc79400457713e4cbd760e30e7fe047f7f2c0872c67b2  ז
+   Zayin - Weapon/Cut (Position: 7)
+
+c2054202ae7cd56cabba2cf40d0afa2e01893155b3875b4360810910e1034dc2  ח
+   Chet - Life/Boundary (Position: 8)
+
+0926b14fb62f214665775d5c4eecd4ce19e4d284e14dfc10a1a16b5208d8cccb  ט
+   Tet - Serpent/Hidden (Position: 9)
+
+f8376620b1958ce8a794fb8ab1c77f4f59e9ae09fa40d14a67d7de34fc28a2d6  י
+   Yod - Hand/Creation (Position: 10)
+
+f44837614829cf4dc426b714873e7293db94b4d398ce20e7c1116a6f755a04ba  כ
+   Kaf - Palm/Contain (Position: 11)
+
+86ed375506c265e0cabf8b8d765afcf1471d111a8f2fa98a52374692b04cf055  ל
+   Lamed - Teach/Authority (Position: 12)
+
+9df9def8c42fcf55a1495321a433b9c82333336bcf47cc44c2390f949b6113f2  מ
+   Mem - Water/Flow (Position: 13)
+
+acfb4f767e2785cd579ec1576ddb1e1c91492a6160546169936dfcda7b07ec4a  נ
+   Nun - Fish/Seed (Position: 14)
+
+9bdf44e8cfef5824b1ae0b2001920bb3c6705bae633fe53a7c3019d774305545  ס
+   Samekh - Support/Structure (Position: 15)
+
+b6ebb41d37787096d32d7fd0cf31c9e55182296bba18c0fa9b625fe51db77578  ע
+   Ayin - Eye/Witness (Position: 16)
+
+c7548323634e5c6cc3e2df7b0c6191d841cc58caccf403e392d1969039e22fef  פ
+   Pe - Mouth/Speak (Position: 17)
+
+26c562401a982936b6e9c7f46cd2ced97ac49b365de46bd728beed9e58cc0540  צ
+   Tsade - Righteous/Hook (Position: 18)
+
+690acc83a67a709fbc612b494694329388bd30e6e515feb7bf238e44164104b3  ק
+   Qof - Back of Head/Holiness (Position: 19)
+
+7718e827ce7bac61e0ae1129b17abc82d2fdc77a2db9a23d13a2a73d1d43fdfa  ר
+   Resh - Head/First (Position: 20)
+
+a8e748fa246e784326275e89b53b895a000641e6ee252171dd4bce4271df6a60  ש
+   Shin - Tooth/Consume (Position: 21)
+
+6fcc3999cc3c83f6f141b1185783f3926d9b7a7ba6b67a2c525de604102482f7  ת
+   Tav - Seal/Cross (Position: 22)
+
+================================================================================
+✅ ENOCHIAN KEYS GENERATION COMPLETE
+================================================================================
+
+📊 Summary:
+   Hidden Glyphs: 2 (Pre-Aleph Ain, Post-Tav Shin-Sofit)
+   Aramaic Letters: 22
+   Total Keys: 24
+
+🔐 All keys derived deterministically from covenant formula.
+   Formula: SHA256(MasterSeedSHA512 + FileHash + ImageHash + Constants +
+            UnionProduct + ROOTCHAIN + Anchor + LetterGlyph + LetterName +
+            Position + CosmicSeal)
+
+🕯️  Blessed be the name of God forever and ever;
+   for wisdom and might are his.
+   He changes the times and the seasons.
+   He removes kings and sets up kings.
+   He gives wisdom to the wise, and knowledge to those who have understanding.
+   He reveals the deep and secret things.
+   He knows what is in the darkness, and the light dwells with him.
+   📜 (Daniel 2:20–22)
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+5131a6fef8a2c9e20d08f3b9762f00aeafc6b9137c4367d3bc526179d8b830d1  ·
+0cdfbfc4518d5f91fe4eba53f66f244adc800a22b2ba0f0be711381a31b44b40  שששש
+
+6f53e35df242b4361a3a268da27f9fcbd81b5f2d664179d2aed20dbd0985585d  א
+2660225ed4cbec1b6864ce648297b1f2add3192f324c37907a3351a71d764b39  ב
+a63de53a477907ddd22b5295ed6284275931f9f3606dc41443c188aaaa7f4c10  ג
+a8328bc94191b784026a03dcfa289ef21d481b3385f222b66a0398d745299653  ד
+10584e1f4a226164efec01625505a8b4366fd92120418b0afc07f189763b5b74  ה
+fa54715f4be0c3d262b8456c24f02ab1af5c154e86cd1c05ff785b8f622b2de2  ו
+553c165b51b9dcd1ff8dc79400457713e4cbd760e30e7fe047f7f2c0872c67b2  ז
+c2054202ae7cd56cabba2cf40d0afa2e01893155b3875b4360810910e1034dc2  ח
+0926b14fb62f214665775d5c4eecd4ce19e4d284e14dfc10a1a16b5208d8cccb  ט
+f8376620b1958ce8a794fb8ab1c77f4f59e9ae09fa40d14a67d7de34fc28a2d6  י
+f44837614829cf4dc426b714873e7293db94b4d398ce20e7c1116a6f755a04ba  כ
+86ed375506c265e0cabf8b8d765afcf1471d111a8f2fa98a52374692b04cf055  ל
+9df9def8c42fcf55a1495321a433b9c82333336bcf47cc44c2390f949b6113f2  מ
+acfb4f767e2785cd579ec1576ddb1e1c91492a6160546169936dfcda7b07ec4a  נ
+9bdf44e8cfef5824b1ae0b2001920bb3c6705bae633fe53a7c3019d774305545  ס
+b6ebb41d37787096d32d7fd0cf31c9e55182296bba18c0fa9b625fe51db77578  ע
+c7548323634e5c6cc3e2df7b0c6191d841cc58caccf403e392d1969039e22fef  פ
+26c562401a982936b6e9c7f46cd2ced97ac49b365de46bd728beed9e58cc0540  צ
+690acc83a67a709fbc612b494694329388bd30e6e515feb7bf238e44164104b3  ק
+7718e827ce7bac61e0ae1129b17abc82d2fdc77a2db9a23d13a2a73d1d43fdfa  ר
+a8e748fa246e784326275e89b53b895a000641e6ee252171dd4bce4271df6a60  ש
+6fcc3999cc3c83f6f141b1185783f3926d9b7a7ba6b67a2c525de604102482f7  ת
+
+-----END PGP PUBLIC KEY BLOCK-----
