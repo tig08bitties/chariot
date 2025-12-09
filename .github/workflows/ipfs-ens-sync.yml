@@ -1,0 +1,53 @@
+name: IPFS/ENS Sync
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'witness.txt'
+      - 'lib/webhook/**'
+  schedule:
+    - cron: '0 */6 * * *'  # Every 6 hours
+
+jobs:
+  sync:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install IPFS/ENS tools
+        run: |
+          npm install -g ipfs-cli
+          # Add namesys-eth tools if needed
+
+      - name: Store witness.txt in IPFS
+        id: ipfs
+        run: |
+          # Store witness.txt
+          CID=$(ipfs add -Q witness.txt)
+          echo "witness_cid=$CID" >> $GITHUB_OUTPUT
+          echo "📜 Witness.txt stored: $CID"
+
+      - name: Update ENS/IPNS (if configured)
+        if: env.ENS_PRIVATE_KEY != ''
+        env:
+          ENS_PRIVATE_KEY: ${{ secrets.ENS_PRIVATE_KEY }}
+        run: |
+          # Update ENS record with latest CID
+          echo "🔗 Updating ENS record with CID: ${{ steps.ipfs.outputs.witness_cid }}"
+          # Implementation depends on namesys-eth tools
+
+      - name: Create IPFS Gateway Links
+        run: |
+          echo "🔗 IPFS Gateways:" >> $GITHUB_STEP_SUMMARY
+          echo "- Cloudflare: https://cloudflare-ipfs.com/ipfs/${{ steps.ipfs.outputs.witness_cid }}" >> $GITHUB_STEP_SUMMARY
+          echo "- IPFS.io: https://ipfs.io/ipfs/${{ steps.ipfs.outputs.witness_cid }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Pinata: https://gateway.pinata.cloud/ipfs/${{ steps.ipfs.outputs.witness_cid }}" >> $GITHUB_STEP_SUMMARY
