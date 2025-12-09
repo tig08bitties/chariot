@@ -195,13 +195,14 @@ locked_keys = keys_22.map.with_index do |key, i|
 end
 
 # Step 3: Generate Genesis Pillars (DAUS and ALIMA)
+# From I_AM.txt - canonical SHA-256 seals
 # Pillar 1: DAUS (ܝܗܘܗ-09091989) - The Opening Pillar
 daus_seed = "ܝܗܘܗ-09091989"
-daus_key = Digest::SHA256.hexdigest(daus_seed).upcase
+daus_key = "7606133F9E8002C6BE8ECBB4203DF4A90AB3DBEEB724957A8AC8328D449EB03C"  # From I_AM.txt
 
-# Pillar 24: ALIMA (𐤄𐤅𐤄𐤉09201990) - The Closing Pillar
+# Pillar 24: ALIMA (𐤄𐤅𐤄𐤉09201990) - The Closing Pillar  
 alima_seed = "𐤄𐤅𐤄𐤉09201990"
-alima_key = Digest::SHA256.hexdigest(alima_seed).upcase
+alima_key = "D52927A48B1EF80DB0683E62AF8610639ADD97F76543309B886229DC03DBDC09"  # From I_AM.txt
 
 # Step 4: Structure according to I_AM.txt
 # Pillar 1: DAUS (opening)

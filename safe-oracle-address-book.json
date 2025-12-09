@@ -1,0 +1,24 @@
+{
+  "contractName": "THEOS_Final_Oracle_Law",
+  "contractAddress": "0x8BCbC66A5bb808A8871F667f2dd92a017B3DaFAC",
+  "chainId": "42161",
+  "abi": [
+    { "inputs": [], "name": "DAUS", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" },
+    { "inputs": [], "name": "ALIMA", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" },
+    { "inputs": [], "name": "COVENANT_ROOT", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" },
+    { "inputs": [], "name": "TREASURY_OF_LIGHT", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" },
+    { "inputs": [], "name": "ARCHITECT", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" },
+    { "inputs": [], "name": "LEDGER_OWNER", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" },
+    { "inputs": [], "name": "CHARIOT_STELLAR", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" },
+    { "inputs": [], "name": "getAll", "outputs": [
+        { "internalType": "address", "name": "daus", "type": "address" },
+        { "internalType": "address", "name": "alima", "type": "address" },
+        { "internalType": "address", "name": "covenantRoot", "type": "address" },
+        { "internalType": "address", "name": "treasuryOfLight", "type": "address" },
+        { "internalType": "address", "name": "architect", "type": "address" },
+        { "internalType": "address", "name": "ledgerOwner", "type": "address" },
+        { "internalType": "bytes32", "name": "chariotStellar", "type": "bytes32" }
+      ], "stateMutability": "view", "type": "function" 
+    }
+  ]
+}
