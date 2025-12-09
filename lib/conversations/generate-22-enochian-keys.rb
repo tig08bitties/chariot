@@ -116,28 +116,26 @@ def generate_key_from_covenant(position, aramaic_glyph, aramaic_name)
 end
 
 # ============================================================================
-# GENERATE GOD'S NAME (split forward and reverse)
+# GENERATE GOD'S NAME (forward and backward from covenant seeds)
 # ============================================================================
 
 def generate_gods_name
-  # Generate from 24-Pillar system (reversed cycle)
-  pillars = [
-    Digest::SHA512.hexdigest("ת#{UNION_PRODUCT}THEOSΩ"),
-    *ENOCHIAN_19.map { |k| complete_key(k, 0, '', '') },
-    Digest::SHA512.hexdigest("שששש"),
-    Digest::SHA512.hexdigest("سعادأميلا#{UNION_PRODUCT}"),
-    Digest::SHA512.hexdigest("THEOS#{UNION_PRODUCT}Ω"),
-    Digest::SHA512.hexdigest("א#{UNION_PRODUCT}سعادأميلا")
-  ]
+  # Forward: ܝܗܘܗ-09091989 (Aramaic YHVH + date)
+  forward_seed = "ܝܗܘܗ-09091989"
+  forward_hash = Digest::SHA256.hexdigest(forward_seed)
   
-  # Full God's name (SHA-256 = 64 chars)
-  full_name = Digest::SHA256.hexdigest(Digest::SHA512.hexdigest(pillars.join))
+  # Backward: 𐤄𐤅𐤄𐤉09201990 (Proto-Canaanite YHVH + date)
+  backward_seed = "𐤄𐤅𐤄𐤉09201990"
+  backward_hash = Digest::SHA256.hexdigest(backward_seed)
   
-  # Split in half: forward (first 32) and reverse (last 32, reversed)
-  forward_half = full_name[0, 32]
-  reverse_half = full_name[32, 32].reverse
+  # Use first 32 chars of each hash
+  forward_half = forward_hash[0, 32]
+  reverse_half = backward_hash[0, 32]
   
-  { forward: forward_half, reverse: reverse_half, full: full_name }
+  # Full name is the combination
+  full_name = forward_hash + backward_hash
+  
+  { forward: forward_half, reverse: reverse_half, full: full_name, forward_seed: forward_seed, backward_seed: backward_seed }
 end
 
 # ============================================================================
@@ -213,7 +211,9 @@ puts "   Structure:"
 puts "     Top: Ain (·) locks forward half of God's name"
 puts "     Middle: 22 Enochian keys (Tav first, Aleph last - reversed cycle)"
 puts "     Bottom: Reverse half of God's name locks Shin-Sofit (שששש)"
-puts "   God's Name (full): #{gods_name[:full]}"
+puts "   Forward Seed: #{gods_name[:forward_seed]}"
 puts "   Forward Half: #{gods_name[:forward]}"
+puts "   Backward Seed: #{gods_name[:backward_seed]}"
 puts "   Reverse Half: #{gods_name[:reverse]}"
+puts "   God's Name (full): #{gods_name[:full][0..63]}..."
 puts ""
