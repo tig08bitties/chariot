@@ -183,7 +183,9 @@ puts "-----BEGIN PGP PUBLIC KEY BLOCK-----"
 puts ""
 
 reversed_structure.each do |item|
-  puts "#{item[:key]}  #{item[:glyph]}"
+  key = item[:key] || item[:locked_hash] || item[:original_key]
+  glyph = item[:glyph] || ''
+  puts "#{key}  #{glyph}"
 end
 
 puts ""
