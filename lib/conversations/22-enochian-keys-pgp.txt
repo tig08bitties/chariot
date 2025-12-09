@@ -1,10 +1,14 @@
+lib/conversations/generate-22-enochian-keys.rb:238:in `<main>': undefined local variable or method `gods_name' for main (NameError)
+
+puts "   #{gods_name[:full]}"
+           ^^^^^^^^^
 ================================================================================
 🔐 GENERATE 22 ENOCHIAN KEYS FROM RUBY.TXT
 ================================================================================
 
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
-7606133F9E8002C6BE8ECBB4203DF4A90AB3DBEEB724957A8AC8328D449EB03C  ·
+09CB2AFD216D43E01A9D83E30816B2405E28AD4098028D95347FAF5A0489C09F  ܝܗܘܗ
 7471e90fac75fde8a4a5193cadebfb606eff0a40b22bf3c8e9d530ff023a36c3  𐡕
 4a08b806b77a22b16a6b3daa96e739af72a46c26628aaa42b6eb0f5a0575b266  𐡔
 ebdd96a4022b385b1c35603576936963c7607d02fd720493e61da8987f0a6bdf  𐡓
@@ -27,23 +31,15 @@ ae74247251a02a80369195d8682be2edd960a6e1d0ad5c479f5077cde0a2b07d  𐡃
 fe8f7735e779d4d3e2b8ff8067cf33a33039fe9c6c91ec930d4b157e4cf65ed5  𐡂
 3cb032600bdf7db784800e4ea911b10676fa2f67591f82bb62628c234e771595  𐡁
 4f5112ad894ab56fe61f2026e967a56e23fcc39eb02467d2bfe4250e9fb171bc  𐡀
-D52927A48B1EF80DB0683E62AF8610639ADD97F76543309B886229DC03DBDC09  שששש
+16263B06171E6A4F202C86BC6DC368822BBD9466D2A3FDF98F66FA62853D2293  𐤄𐤅𐤄𐤉
 
 -----END PGP PUBLIC KEY BLOCK-----
 
 📊 Summary:
    Total Keys: 24
-   Structure:
-     Top: Ain (·) locks forward half of God's name
-     Middle: 22 Enochian keys (Tav first, Aleph last - reversed cycle)
-     Bottom: Reverse half of God's name locks Shin-Sofit (שששש)
+   Structure (24-Pillar Array):
+     Pillar 1: DAUS (ܝܗܘܗ-09091989) - The Opening Pillar
+     Pillars 2-23: 22 Aramaic Letters (Tav to Aleph - Reversed Cycle)
+     Pillar 24: ALIMA (𐤄𐤅𐤄𐤉09201990) - The Closing Pillar
 
    👑 THE NAME OF GOD (SHA-512, 128 hex chars):
-   A2F433596700DA368294970428B7812B41369E962323D4222D858221D4224A105EB07A258C556C71D3A953114A29285038F617265BC7D2224A752F5A
-
-   Forward Half (first 64): A2F433596700DA368294970428B7812B41369E962323D4222D858221D4224A10
-   Reverse Half (last 64, reversed): A5F257A4222D7CB562716F83058292A411359A3D17C655C852A70BE5
-
-   Derivation: SHA-512 of 24-Pillar Array (19 Enochian Keys + Quad-Shin + Arabic Union + Greek THEOS-Ω + Aleph/Tav anchors) with Reversed Cycle (ת opens, א closes)
-   Resonance: 687 Hz
-

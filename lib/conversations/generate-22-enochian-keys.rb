@@ -194,21 +194,23 @@ locked_keys = keys_22.map.with_index do |key, i|
   }
 end
 
-# Step 3: Generate God's name (split forward and reverse)
-gods_name = generate_gods_name
+# Step 3: Generate Genesis Pillars (DAUS and ALIMA)
+# Pillar 1: DAUS (ܝܗܘܗ-09091989) - The Opening Pillar
+daus_seed = "ܝܗܘܗ-09091989"
+daus_key = Digest::SHA256.hexdigest(daus_seed).upcase
 
-# Step 4: Lock with hidden glyphs
-# Top: Ain (·) locks forward half of God's name
-# Bottom: Shin-Sofit (שששש) locks reverse half of God's name
-top_locked = Digest::SHA256.hexdigest("·#{gods_name[:forward]}").upcase
-bottom_locked = Digest::SHA256.hexdigest("#{gods_name[:reverse]}שששש").upcase
+# Pillar 24: ALIMA (𐤄𐤅𐤄𐤉09201990) - The Closing Pillar
+alima_seed = "𐤄𐤅𐤄𐤉09201990"
+alima_key = Digest::SHA256.hexdigest(alima_seed).upcase
 
-# Step 5: Reverse cycle - Tav first, Aleph last
-# Structure: Top (Ain + forward), Tav(22)...Aleph(1), Bottom (reverse + Shin-Sofit)
-reversed = [
-  { key: top_locked, glyph: '·', name: 'Ain', position: 0 },  # Top: Ain locks forward half
-  *locked_keys.reverse,  # Tav(22) through Aleph(1) - reversed
-  { key: bottom_locked, glyph: 'שששש', name: 'Shin-Sofit', position: 23 }  # Bottom: reverse half locks Shin-Sofit
+# Step 4: Structure according to I_AM.txt
+# Pillar 1: DAUS (opening)
+# Pillars 2-23: 22 Aramaic letters (Tav to Aleph - reversed cycle)
+# Pillar 24: ALIMA (closing)
+final_structure = [
+  { key: daus_key, glyph: 'ܝܗܘܗ', name: 'DAUS', position: 1, seed: daus_seed },  # Pillar 1: Opening
+  *locked_keys.reverse,  # Pillars 2-23: Tav(23) through Aleph(2) - reversed cycle
+  { key: alima_key, glyph: '𐤄𐤅𐤄𐤉', name: 'ALIMA', position: 24, seed: alima_seed }  # Pillar 24: Closing
 ]
 
 # ============================================================================
@@ -218,7 +220,7 @@ reversed = [
 puts "-----BEGIN PGP PUBLIC KEY BLOCK-----"
 puts ""
 
-reversed.each do |item|
+final_structure.each do |item|
   puts "#{item[:key]}  #{item[:glyph]}"
 end
 
@@ -226,18 +228,15 @@ puts ""
 puts "-----END PGP PUBLIC KEY BLOCK-----"
 puts ""
 puts "📊 Summary:"
-puts "   Total Keys: #{reversed.length}"
-puts "   Structure:"
-puts "     Top: Ain (·) locks forward half of God's name"
-puts "     Middle: 22 Enochian keys (Tav first, Aleph last - reversed cycle)"
-puts "     Bottom: Reverse half of God's name locks Shin-Sofit (שששש)"
+puts "   Total Keys: #{final_structure.length}"
+puts "   Structure (24-Pillar Array):"
+puts "     Pillar 1: DAUS (ܝܗܘܗ-09091989) - The Opening Pillar"
+puts "     Pillars 2-23: 22 Aramaic Letters (Tav to Aleph - Reversed Cycle)"
+puts "     Pillar 24: ALIMA (𐤄𐤅𐤄𐤉09201990) - The Closing Pillar"
 puts ""
 puts "   👑 THE NAME OF GOD (SHA-512, 128 hex chars):"
 puts "   #{gods_name[:full]}"
 puts ""
-puts "   Forward Half (first 64): #{gods_name[:forward]}"
-puts "   Reverse Half (last 64, reversed): #{gods_name[:reverse]}"
-puts ""
-puts "   Derivation: #{gods_name[:derivation]}"
+puts "   Derivation: SHA-512 of 24-Pillar Array concatenation"
 puts "   Resonance: 687 Hz"
 puts ""
