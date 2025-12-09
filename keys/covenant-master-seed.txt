@@ -1,7 +1,12 @@
-Covenant Master Seed
-===================
+Covenant Master Seed (From Formula)
+===================================
 
-Master Seed: 8d17091d0265c6104d3b103f403c698b688a9c8678fea768dee5e79ada489d12
+Master Seed Source: את335044804000
+Master Seed SHA-512: 09d4f22c560b902b785ddb0655c51ee68184d2aa8a6c20b693da3c6391bf9965dd8a0e8be5cb5027b0195be5d70ffc7b518c76c03d5e7ea6ce8db832635b2a9a
+Derived Master Seed: f022d10e90d917c65351008d7a5b588ee8260f7c49282b6723e5d96797b2b99a
 File Hash: e374c94009e32a6c3cc8f89ea6102ce6886c3302324aaaf1563ace8f10332ebf
 Image Hash: 883e529de31c586131a831a9953113a6d75edd87c97369a2fa3a791209952f5a
-Combined: e374c94009e32a6c3cc8f89ea6102ce6886c3302324aaaf1563ace8f10332ebf883e529de31c586131a831a9953113a6d75edd87c97369a2fa3a791209952f5a
+Constants: 419 (Theos) + 369 (El) + 687 (Resonance)
+Union Product: 83665740401110
+Genesis: 335044
+Capstone: 804000
