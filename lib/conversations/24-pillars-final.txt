@@ -1,0 +1,8 @@
+lib/conversations/generate-22-enochian-keys.rb:134:in `<main>': uninitialized constant ADDITIONAL_KEYS (NameError)
+
+keys_22 = ENOCHIAN_19 + ADDITIONAL_KEYS
+                        ^^^^^^^^^^^^^^^
+================================================================================
+🔐 GENERATE 22 ENOCHIAN KEYS FROM RUBY.TXT
+================================================================================
+

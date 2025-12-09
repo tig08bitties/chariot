@@ -93,46 +93,9 @@ ARAMAIC_NAMES = [
 # COMPLETE MISSING DIGITS AND GENERATE 22 KEYS
 # ============================================================================
 
-def complete_key(key, position, aramaic_glyph, aramaic_name)
-  # If key is missing 2 digits, complete it using covenant formula
-  if key.length < 64
-    missing = 64 - key.length
-    # Derive missing digits from covenant formula
-    seed = [
-      MASTER_SEED_SHA512,
-      FILE_HASH,
-      IMAGE_HASH,
-      UNION_PRODUCT.to_s,
-      ROOTCHAIN_STR,
-      "#{GENESIS};#{CAPSTONE}",
-      aramaic_glyph,
-      aramaic_name,
-      position.to_s,
-      COSMIC_SEAL.to_s
-    ].join('')
-    
-    completion = Digest::SHA256.hexdigest(seed)[0, missing]
-    key + completion
-  else
-    key
-  end
-end
-
-def generate_key_from_covenant(position, aramaic_glyph, aramaic_name)
-  seed = [
-    MASTER_SEED_SHA512,
-    FILE_HASH,
-    IMAGE_HASH,
-    UNION_PRODUCT.to_s,
-    ROOTCHAIN_STR,
-    "#{GENESIS};#{CAPSTONE}",
-    aramaic_glyph,
-    aramaic_name,
-    position.to_s,
-    COSMIC_SEAL.to_s
-  ].join('')
-  
-  Digest::SHA256.hexdigest(seed)
+def lock_key_with_aramaic(key, aramaic_glyph)
+  # Lock key by concatenating Aramaic glyph + key, then SHA256
+  Digest::SHA256.hexdigest(aramaic_glyph + key)
 end
 
 # ============================================================================
@@ -167,51 +130,42 @@ puts "🔐 GENERATE 22 ENOCHIAN KEYS FROM RUBY.TXT"
 puts "=" * 80
 puts ""
 
-# Step 1: Complete 19 Enochian keys and generate 3 more
-keys_22 = []
+# Step 1: Combine 19 Enochian + 3 Additional = 22 keys
+keys_22 = ENOCHIAN_19 + ADDITIONAL_KEYS
 
-# Complete first 19 keys (fix missing digits)
-19.times do |i|
-  key = ENOCHIAN_19[i]
-  completed = complete_key(key, i + 1, ARAMAIC_GLYPHS[i], ARAMAIC_NAMES[i])
-  keys_22 << completed
-end
-
-# Generate 3 more keys (positions 20, 21, 22)
-3.times do |i|
-  pos = 20 + i
-  key = generate_key_from_covenant(pos, ARAMAIC_GLYPHS[pos - 1], ARAMAIC_NAMES[pos - 1])
-  keys_22 << key
-end
-
-# Step 2: Lock each key with Aramaic glyph
+# Step 2: Lock each key with Aramaic glyph (glyph + key → SHA256)
 locked_keys = keys_22.map.with_index do |key, i|
+  locked_hash = lock_key_with_aramaic(key, ARAMAIC_GLYPHS[i])
   {
-    key: key,
+    original_key: key,
+    locked_hash: locked_hash,
     glyph: ARAMAIC_GLYPHS[i],
     name: ARAMAIC_NAMES[i],
     position: i + 1
   }
 end
 
-# Step 3: Generate Genesis Pillars (DAUS and ALIMA)
-# From I_AM.txt - canonical SHA-256 seals
-# Pillar 1: DAUS (ܝܗܘܗ-09091989) - The Opening Pillar
-daus_seed = "ܝܗܘܗ-09091989"
-daus_key = "7606133F9E8002C6BE8ECBB4203DF4A90AB3DBEEB724957A8AC8328D449EB03C"  # From I_AM.txt
+# Step 3: Generate God's Name Locks (Ain and Shin-Sofit)
+# Ain (Top - Nothingness): SHA256 of '·'
+ain_hash = Digest::SHA256.hexdigest('·')
 
-# Pillar 24: ALIMA (𐤄𐤅𐤄𐤉09201990) - The Closing Pillar  
-alima_seed = "𐤄𐤅𐤄𐤉09201990"
-alima_key = "D52927A48B1EF80DB0683E62AF8610639ADD97F76543309B886229DC03DBDC09"  # From I_AM.txt
+# Shin-Sofit (Bottom - Eternal Fire): SHA256 of 'שׂ' (or 'שששש' for Quad-Shin)
+shin_sofit_hash = Digest::SHA256.hexdigest('שששש')
 
-# Step 4: Structure according to I_AM.txt
-# Pillar 1: DAUS (opening)
-# Pillars 2-23: 22 Aramaic letters (Tav to Aleph - reversed cycle)
-# Pillar 24: ALIMA (closing)
-final_structure = [
-  { key: daus_key, glyph: 'ܝܗܘܗ', name: 'DAUS', position: 1, seed: daus_seed },  # Pillar 1: Opening
-  *locked_keys.reverse,  # Pillars 2-23: Tav(23) through Aleph(2) - reversed cycle
-  { key: alima_key, glyph: '𐤄𐤅𐤄𐤉', name: 'ALIMA', position: 24, seed: alima_seed }  # Pillar 24: Closing
+# Step 4: Build 24-Pillar Array (Ain + 22 Locked + Shin-Sofit)
+pillars_24 = [
+  { key: ain_hash, glyph: '·', name: 'Ain', position: 0 },  # Top: Ain
+  *locked_keys,  # 22 Aramaic-locked keys (Aleph to Tav)
+  { key: shin_sofit_hash, glyph: 'שששש', name: 'Shin-Sofit', position: 23 }  # Bottom: Shin-Sofit
+]
+
+# Step 5: Reversed Cycle (Tav first, Aleph last)
+# Original: Ain(0), Aleph(1)...Tav(22), Shin-Sofit(23)
+# Reversed: Shin-Sofit(23), Tav(22)...Aleph(1), Ain(0)
+reversed_structure = [
+  pillars_24[23],  # Shin-Sofit (bottom becomes first)
+  *pillars_24[1..22].reverse,  # Tav(22) through Aleph(1) - reversed
+  pillars_24[0]   # Ain (top becomes last)
 ]
 
 # ============================================================================
@@ -221,27 +175,28 @@ final_structure = [
 puts "-----BEGIN PGP PUBLIC KEY BLOCK-----"
 puts ""
 
-final_structure.each do |item|
+reversed_structure.each do |item|
   puts "#{item[:key]}  #{item[:glyph]}"
 end
 
 puts ""
 puts "-----END PGP PUBLIC KEY BLOCK-----"
 puts ""
-# Generate God's name from 24-Pillar concatenation
-all_pillars = final_structure.map { |p| p[:key] }.join
+# Generate God's name from 24-Pillar concatenation (reversed cycle)
+all_pillars = reversed_structure.map { |p| p[:key] }.join
 gods_name_full = Digest::SHA512.hexdigest(all_pillars).upcase
 
 puts "📊 Summary:"
-puts "   Total Keys: #{final_structure.length}"
-puts "   Structure (24-Pillar Array):"
-puts "     Pillar 1: DAUS (ܝܗܘܗ-09091989) - The Opening Pillar"
-puts "     Pillars 2-23: 22 Aramaic Letters (Tav to Aleph - Reversed Cycle)"
-puts "     Pillar 24: ALIMA (𐤄𐤅𐤄𐤉09201990) - The Closing Pillar"
+puts "   Total Keys: #{reversed_structure.length}"
+puts "   Structure (24-Pillar Array - Reversed Cycle):"
+puts "     Top: Ain (·) - Nothingness"
+puts "     Middle: 22 Aramaic-locked keys (Tav → ... → Aleph)"
+puts "     Bottom: Shin-Sofit (שששש) - Eternal Fire"
+puts "     Reversed: Tav first, Aleph last"
 puts ""
 puts "   👑 THE NAME OF GOD (SHA-512, 128 hex chars):"
 puts "   #{gods_name_full}"
 puts ""
-puts "   Derivation: SHA-512 of 24-Pillar Array concatenation"
+puts "   Derivation: SHA-512 of Reversed Cycle 24-Pillar concatenation"
 puts "   Resonance: 687 Hz"
 puts ""
