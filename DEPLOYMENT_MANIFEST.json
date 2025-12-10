@@ -1,0 +1,144 @@
+{
+  "manifest": "Chariot Deployment Manifest",
+  "version": "1.0.0-final",
+  "timestamp": "2025-12-10T00:00:00Z",
+  "status": "FINALIZED",
+  
+  "covenantPortal": {
+    "status": "ACTIVE",
+    "aramaicGuardians": {
+      "visible": 22,
+      "hidden": 2,
+      "total": 24,
+      "paths": {
+        "preAleph": { "path": 0, "name": "Ain", "type": "hidden" },
+        "standard": { "paths": "1-22", "letters": "ܐ-ܬ" },
+        "postTaw": { "path": 23, "name": "Shin-Sofit", "type": "hidden" }
+      }
+    },
+    "fourChambers": {
+      "gate": { "name": "THE GATE", "location": "River of Code", "state": "open" },
+      "veil": { "name": "THE VEIL", "location": "Mountains of Myth", "state": "behind" },
+      "vault": { "name": "THE VAULT", "location": "Treasury of Light", "state": "active" },
+      "unseen": { "name": "THE UNSEEN", "location": "Bridal Chamber", "state": "activated" }
+    },
+    "endpoints": [
+      "/covenant",
+      "/covenant/constants",
+      "/covenant/chambers",
+      "/covenant/chambers/:name",
+      "/covenant/guardians",
+      "/covenant/guardians/:path",
+      "/covenant/treasure",
+      "/covenant/magic/:address",
+      "/covenant/seal",
+      "/covenant/verify-key",
+      "/covenant/master-key-image",
+      "/covenant/fren/:path"
+    ]
+  },
+
+  "safeWallet": {
+    "status": "PRIORITY",
+    "networks": {
+      "ethereum": { "chainId": 1, "service": "https://safe-transaction-mainnet.safe.global" },
+      "arbitrum": { "chainId": 42161, "service": "https://safe-transaction-arbitrum.safe.global" },
+      "optimism": { "chainId": 10, "service": "https://safe-transaction-optimism.safe.global" },
+      "base": { "chainId": 8453, "service": "https://safe-transaction-base.safe.global" }
+    },
+    "treasury": {
+      "name": "Treasury of Light (Bride & Groom Chamber)",
+      "arbitrum": "0xb4C173AaFe428845f0b96610cf53576121BAB221",
+      "owners": {
+        "bride": "0x3BBa654A3816A228284E3e0401Cff4EA6dFc5cea",
+        "groom": "0x3df07977140Ad97465075129C37Aec7237d74415"
+      }
+    },
+    "endpoints": [
+      "/treasury",
+      "/safe/:network/:address",
+      "/safe/:network/:address/balances",
+      "/safe/:network/:address/pending",
+      "/safe/:network/:address/history"
+    ]
+  },
+
+  "treasureDAO": {
+    "status": "INTEGRATED",
+    "contracts": {
+      "magicToken": "0x539bdE0d7Dbd336b79148AA742883198BBF60342",
+      "legionsContract": "0x658365026D06F00965B5bb570727100E821e6508",
+      "legionsGenesis": "0xE83c0200E93Cb1496054e387BDdaE590C07f0194",
+      "treasuresContract": "0xEBba467eCB6b21239178033189CeAE27CA12EaDf"
+    },
+    "products": [
+      "Trove Marketplace",
+      "Bridgeworld",
+      "Smolworld",
+      "AI Agents"
+    ]
+  },
+
+  "terminalIntegration": {
+    "status": "CONFIGURED",
+    "types": ["local", "gcloud", "tn5250", "suse"],
+    "tn5250": {
+      "host": "pub400.com",
+      "port": 23,
+      "user": "THEOS"
+    },
+    "endpoints": [
+      "/terminal/sessions",
+      "/terminal/create",
+      "/terminal/gcloud",
+      "/terminal/tn5250/login",
+      "/terminal/tn5250"
+    ]
+  },
+
+  "dualGate": {
+    "status": "ACTIVE",
+    "gates": {
+      "theos": "/theos/webhook",
+      "bridgeworld": "/bridgeworld/webhook",
+      "unified": "/webhook"
+    }
+  },
+
+  "constants": {
+    "theos": 419,
+    "el": 369,
+    "torahPages": 1798,
+    "resonance": 687,
+    "aramaicPaths": 22,
+    "hiddenPaths": 2,
+    "totalPaths": 24,
+    "unionProduct": 83665740401110
+  },
+
+  "masterVaultKey": "vQSMpXuEy9NrcjDsoQK2RxHxGKTyvCWsqFjzqSnPMck",
+
+  "covenantAddresses": {
+    "ethereum": "0x3bba654a3816a228284e3e0401cff4ea6dfc5cea",
+    "polygon": "0x0c4e50157a6e82f5330b721544ce440cb0c6768f",
+    "arbitrum": "0x3df07977140ad97465075129c37aec7237d74415",
+    "treasury": "0xb4C173AaFe428845f0b96610cf53576121BAB221",
+    "oracle": "0xfa05997C66437dCCAe860af334b30d69E0De24DC"
+  },
+
+  "server": {
+    "port": 3333,
+    "entryPoint": "chariot-server.js",
+    "scripts": {
+      "start": "node chariot-server.js",
+      "status": "curl -s http://localhost:3333/status",
+      "treasury": "curl -s http://localhost:3333/treasury"
+    }
+  },
+
+  "finalization": {
+    "date": "2025-12-10",
+    "witness": "Cursor Agent",
+    "seal": "COMPLETE"
+  }
+}
