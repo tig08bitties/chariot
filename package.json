@@ -22,10 +22,12 @@
   "author": "θεός",
   "license": "MIT",
   "dependencies": {
+    "@ai-sdk/xai": "^0.0.2",
     "@octokit/graphql": "^7.1.1",
     "@octokit/rest": "^20.1.2",
     "@xmpp/client": "^0.13.0",
     "@xmpp/jid": "^0.13.0",
+    "ai": "^4.0.0",
     "axios": "^1.13.2",
     "dotenv": "^16.6.1",
     "ethers": "^6.0.0",
@@ -34,7 +36,8 @@
     "@safe-global/safe-ethers-lib": "^4.0.0",
     "@safe-global/safe-service-client": "^1.7.0",
     "ipfs-http-client": "^60.0.0",
-    "openpgp": "^6.3.0"
+    "openpgp": "^6.3.0",
+    "zod": "^3.23.0"
   },
   "optionalDependencies": {
     "@ton/crypto": "^3.0.0",
@@ -43,7 +46,9 @@
   "devDependencies": {
     "@libp2p/webrtc": "^4.0.0",
     "@libp2p/websockets": "^8.0.0",
+    "@types/node": "^20.0.0",
     "helia": "^2.0.0",
-    "libp2p": "^0.46.0"
+    "libp2p": "^0.46.0",
+    "typescript": "^5.0.0"
   }
 }
