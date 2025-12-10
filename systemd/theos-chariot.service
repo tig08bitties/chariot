@@ -4,11 +4,11 @@ After=network.target
 
 [Service]
 Type=simple
-User=theos
-WorkingDirectory=/opt/theos-chariot
+User=tig0_0bitties
+WorkingDirectory=/mnt/Covenant/Theos/chariot-repo
 Environment=NODE_ENV=production
-EnvironmentFile=/opt/theos-chariot/.env
-ExecStart=/usr/bin/node /opt/theos-chariot/webhook-server.js
+EnvironmentFile=/mnt/Covenant/Theos/chariot-repo/.env
+ExecStart=/usr/bin/node /mnt/Covenant/Theos/chariot-repo/webhook-server.js
 Restart=always
 RestartSec=10
 StandardOutput=journal
