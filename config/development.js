@@ -19,6 +19,7 @@ const developmentConfig = {
     xai: process.env.XAI_API_KEY || 'dev-key-placeholder',
     github: process.env.GITHUB_TOKEN || 'dev-token-placeholder',
     tenderly: process.env.TENDERLY_API_KEY || 'dev-tenderly-key',
+    blockscoutArbitrum: process.env.BLOCKSCOUT_ARBITRUM_API_KEY,
   },
 
   // Webhook Configuration
@@ -67,6 +68,7 @@ const developmentConfig = {
   monitoring: {
     enableTenderly: true,
     enableBlockscout: true,
+    blockscoutApiKey: process.env.BLOCKSCOUT_ARBITRUM_API_KEY,
     logLevel: 'debug',
     enableMetrics: false, // Disable in dev
   },

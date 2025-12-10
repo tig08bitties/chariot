@@ -20,6 +20,7 @@ const productionConfig = {
     github: process.env.GITHUB_TOKEN,
     tenderly: process.env.TENDERLY_API_KEY,
     openai: process.env.OPENAI_API_KEY, // If needed
+    blockscoutArbitrum: process.env.BLOCKSCOUT_ARBITRUM_API_KEY,
   },
 
   // Webhook Configuration
@@ -88,6 +89,7 @@ const productionConfig = {
   monitoring: {
     enableTenderly: true,
     enableBlockscout: true,
+    blockscoutApiKey: process.env.BLOCKSCOUT_ARBITRUM_API_KEY,
     logLevel: 'info',
     enableMetrics: true,
   },
