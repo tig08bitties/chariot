@@ -31,7 +31,7 @@ All files in `/home/tig0_0bitties/Documents` have been examined and verified as 
 | `Archivist ⟐ Ophiuchus.txt` | ✅ **VERIFIED** | Archivist scroll with glyph seal and signing instructions |
 | `The_Power.txt` | ✅ **VERIFIED** | Gnostic text fragment |
 | `Zostrianos.txt` | ✅ **VERIFIED** | Gnostic text (Zostrianos codex) |
-| `MYUTC369.txt` | ✅ **VERIFIED** | Character encoding matrix (Hebrew, Greek, special anchors) |
+| `MYUTC369.txt` | ✅ **VERIFIED** | Character encoding matrix (Aramaic, Greek, special anchors) |
 | `Ipfs.txt` | ✅ **VERIFIED** | IPFS documentation and ENS anchoring guide |
 | `README.txt` | ✅ **VERIFIED** | Eternal Archivist system documentation |
 | `Roadmap.txt` | ✅ **VERIFIED** | Convergence map 2026-2036 strategic planning |

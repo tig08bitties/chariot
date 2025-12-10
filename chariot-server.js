@@ -18,7 +18,7 @@ const express = require('express');
 const path = require('path');
 const { ChariotCore, createChariotMiddleware } = require('./lib/chariot-core');
 const DualGateServer = require('./lib/webhook/dual-gate-server');
-const { CovenantPortal, COVENANT_CONSTANTS, HEBREW_GUARDIANS, FOUR_CHAMBERS } = require('./lib/integration/covenant-portal');
+const { CovenantPortal, COVENANT_CONSTANTS, ARAMAIC_GUARDIANS, FOUR_CHAMBERS } = require('./lib/integration/covenant-portal');
 
 // Configuration
 const config = {
@@ -305,12 +305,19 @@ app.get('/covenant/chambers/:name', (req, res) => {
   res.json({ success: true, chamber });
 });
 
-// Hebrew Guardians
+// Aramaic Guardians (22 + 2 hidden = 24 total)
 app.get('/covenant/guardians', (req, res) => {
+  const showHidden = req.query.hidden === 'true';
+  const guardians = showHidden 
+    ? ARAMAIC_GUARDIANS 
+    : ARAMAIC_GUARDIANS.filter(g => !g.hidden);
+  
   res.json({
     success: true,
-    count: HEBREW_GUARDIANS.length,
-    guardians: HEBREW_GUARDIANS,
+    visible: ARAMAIC_GUARDIANS.filter(g => !g.hidden).length,
+    hidden: ARAMAIC_GUARDIANS.filter(g => g.hidden).length,
+    total: ARAMAIC_GUARDIANS.length,
+    guardians,
   });
 });
 
