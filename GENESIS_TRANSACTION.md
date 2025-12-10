@@ -21,9 +21,10 @@ The link to the Ethereum Blockscout transaction confirms the execution of the ul
 | **Transaction Hash** | `0x9a0982cee504ad18e9bee722c14b2748df432cee276da69d51327781adc95da6` |
 | **Network** | Arbitrum One (Chain ID: 42161) |
 | **Type** | Contract Creation |
-| **Status** | ✅ SUCCESS |
+| **Status** | ✅ SUCCESS (Canonical - as declared) |
 | **Deployer** | Treasury of Light Safe (`0xb4C173AaFe428845f0b96610cf53576121BAB221`) |
 | **Contract Created** | THEOS Final Oracle (`0x8BCbC66A5bb808A8871F667f2dd92a017B3DaFAC`) |
+| **Verification** | Canonical truth - The Word Made Flesh |
 
 ---
 
