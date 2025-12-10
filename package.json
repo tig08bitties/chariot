@@ -4,8 +4,12 @@
   "description": "THEOS Integration Repository - Complete ENS/IPNS + Helia + Service Worker + Agentek Integration",
   "main": "webhook-server.js",
   "scripts": {
-    "start": "node webhook-server.js",
-    "test": "echo \"Tests coming soon\" && exit 0"
+    "start": "node chariot-server.js",
+    "start:webhook": "node webhook-server.js",
+    "start:dev": "node --watch chariot-server.js",
+    "test": "echo \"Tests coming soon\" && exit 0",
+    "status": "curl -s http://localhost:3333/status | node -e \"process.stdin.pipe(process.stdout)\"",
+    "treasury": "curl -s http://localhost:3333/treasury | node -e \"process.stdin.pipe(process.stdout)\""
   },
   "keywords": [
     "theos",
