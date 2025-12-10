@@ -15,10 +15,13 @@
 require('dotenv').config();
 
 const express = require('express');
+const { ethers } = require('ethers');
 const path = require('path');
 const { ChariotCore, createChariotMiddleware } = require('./lib/chariot-core');
 const DualGateServer = require('./lib/webhook/dual-gate-server');
 const { CovenantPortal, COVENANT_CONSTANTS, ARAMAIC_GUARDIANS, FOUR_CHAMBERS } = require('./lib/integration/covenant-portal');
+const { GenesisSeal, GENESIS, COVENANT_VECTORS, FINAL_AXIOM, HIERARCHY } = require('./lib/covenant/genesis-seal');
+const { VaultOfCreation, CONTRACTS: TREASURE_CONTRACTS, COVENANT_LEGIONS } = require('./lib/treasure/vault-of-creation');
 
 // Configuration
 const config = {
@@ -65,6 +68,14 @@ const middleware = createChariotMiddleware(chariot);
 const covenantPortal = new CovenantPortal({
   provider: chariot.safeWallet?.providers?.arbitrum,
   network: 'arbitrum',
+});
+
+// Initialize Genesis Seal (THE WORD MADE FLESH)
+const genesisSeal = new GenesisSeal();
+
+// Initialize Vault of Creation (TREASURE DAO)
+const vaultOfCreation = new VaultOfCreation({
+  treasury: process.env.TREASURY_ARBITRUM,
 });
 
 // Create Express app
@@ -392,6 +403,217 @@ app.get('/covenant/fren/:path', (req, res) => {
   res.json({ success: true, fren: context });
 });
 
+// === GENESIS SEAL ROUTES (THE WORD MADE FLESH) ===
+
+// Genesis - The Final Proof
+app.get('/genesis', (req, res) => {
+  res.json({
+    success: true,
+    title: '👑 THE WORD MADE FLESH',
+    genesis: GENESIS,
+    axiom: FINAL_AXIOM,
+    links: genesisSeal.getExplorerLinks(),
+  });
+});
+
+// Genesis Transaction
+app.get('/genesis/transaction', (req, res) => {
+  res.json({
+    success: true,
+    transaction: GENESIS.transaction,
+    links: {
+      arbiscan: `https://arbiscan.io/tx/${GENESIS.transaction.hash}`,
+      blockscout: `https://arbitrum.blockscout.com/tx/${GENESIS.transaction.hash}`,
+    },
+  });
+});
+
+// The Oracle - Canonical Law Contract
+app.get('/genesis/oracle', (req, res) => {
+  res.json({
+    success: true,
+    oracle: GENESIS.oracle,
+    links: {
+      arbiscan: `https://arbiscan.io/address/${GENESIS.oracle.address}`,
+      blockscout: `https://arbitrum.blockscout.com/address/${GENESIS.oracle.address}`,
+    },
+  });
+});
+
+// The 7 Covenant Vectors
+app.get('/genesis/vectors', (req, res) => {
+  res.json({
+    success: true,
+    vectors: COVENANT_VECTORS,
+    count: Object.keys(COVENANT_VECTORS).length,
+  });
+});
+
+// The Final Axiom (Three Pillars)
+app.get('/genesis/axiom', (req, res) => {
+  res.json({
+    success: true,
+    axiom: FINAL_AXIOM,
+    sealed: true,
+  });
+});
+
+// Genesis Verification (on-chain)
+app.get('/genesis/verify', async (req, res) => {
+  try {
+    const verification = await genesisSeal.verify();
+    res.json({
+      success: true,
+      verified: verification.oracle.deployed,
+      ...verification,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Full Sealed Manifest
+app.get('/genesis/manifest', (req, res) => {
+  res.json(genesisSeal.getSealedManifest());
+});
+
+// Bot Hierarchy
+app.get('/genesis/hierarchy', (req, res) => {
+  res.json({
+    success: true,
+    hierarchy: HIERARCHY,
+  });
+});
+
+// === VAULT OF CREATION ROUTES (TREASURE DAO) ===
+
+// Vault status
+app.get('/vault', async (req, res) => {
+  try {
+    const status = await vaultOfCreation.initialize();
+    res.json({
+      success: true,
+      vault: 'THE WORD BECOMES MAGIC',
+      ...status,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// The Lore
+app.get('/vault/lore', (req, res) => {
+  res.json({
+    success: true,
+    lore: vaultOfCreation.getLore(),
+  });
+});
+
+// The 22 Legions
+app.get('/vault/legions', (req, res) => {
+  res.json({
+    success: true,
+    legions: COVENANT_LEGIONS,
+    count: COVENANT_LEGIONS.length,
+    description: '22 Aramaic Guardians → 22 Legions',
+  });
+});
+
+// Single Legion
+app.get('/vault/legions/:id', (req, res) => {
+  const stats = vaultOfCreation.getLegionStats(parseInt(req.params.id));
+  if (!stats) {
+    return res.status(404).json({ error: 'Legion not found' });
+  }
+  res.json({ success: true, legion: stats });
+});
+
+// Legion by Aramaic name
+app.get('/vault/legions/aramaic/:name', (req, res) => {
+  const legion = vaultOfCreation.getLegionByAramaic(req.params.name);
+  if (!legion) {
+    return res.status(404).json({ error: 'Legion not found' });
+  }
+  const stats = vaultOfCreation.getLegionStats(legion.id);
+  res.json({ success: true, legion: stats });
+});
+
+// Treasure DAO Contracts
+app.get('/vault/contracts', (req, res) => {
+  res.json({
+    success: true,
+    contracts: TREASURE_CONTRACTS,
+    network: 'arbitrum',
+  });
+});
+
+// Covenant Multipliers
+app.get('/vault/multipliers', (req, res) => {
+  const days = [30, 90, 180, 354, 376, 419];
+  const multipliers = days.map(d => ({
+    days: d,
+    multiplier: vaultOfCreation.calculateCovenantMultiplier(d),
+    meaning: d === 354 ? 'Lunar Year (Daus → Theos)' 
+           : d === 376 ? 'Full Cycle (Father → Mother)' 
+           : d === 419 ? 'THEOS (The Union Seal)' 
+           : null,
+  }));
+  
+  res.json({
+    success: true,
+    multipliers,
+    maxMultiplier: 4.19,
+    description: 'Covenant stake multipliers based on sacred constants',
+  });
+});
+
+// Generate Stake Transaction
+app.post('/vault/stake', async (req, res) => {
+  const { amount, lockDays } = req.body;
+  if (!amount || !lockDays) {
+    return res.status(400).json({ error: 'amount and lockDays required' });
+  }
+  
+  try {
+    const tx = await vaultOfCreation.generateStakeTx(amount, lockDays);
+    res.json({
+      success: true,
+      transaction: tx,
+      multiplier: vaultOfCreation.calculateCovenantMultiplier(lockDays),
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// MAGIC balance check
+app.get('/vault/magic/:address', async (req, res) => {
+  try {
+    const balance = await vaultOfCreation.getMagicBalance(req.params.address);
+    res.json({
+      success: true,
+      address: req.params.address,
+      balance: ethers.formatEther(balance),
+      unit: 'MAGIC',
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Harvester info
+app.get('/vault/harvester', async (req, res) => {
+  try {
+    const info = await vaultOfCreation.getHarvesterInfo();
+    res.json({
+      success: true,
+      harvester: info,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // === STARTUP ===
 
 async function start() {
@@ -442,6 +664,22 @@ async function start() {
    Treasure: http://localhost:${config.port}/covenant/treasure
    Frens: http://localhost:${config.port}/covenant/fren/:path
    Seal: http://localhost:${config.port}/covenant/seal
+
+👑 GENESIS SEAL (THE WORD MADE FLESH):
+   Genesis: http://localhost:${config.port}/genesis
+   Transaction: http://localhost:${config.port}/genesis/transaction
+   Oracle: http://localhost:${config.port}/genesis/oracle
+   Vectors: http://localhost:${config.port}/genesis/vectors
+   Verify: http://localhost:${config.port}/genesis/verify
+   Hierarchy: http://localhost:${config.port}/genesis/hierarchy
+
+⚔️  VAULT OF CREATION (TREASURE DAO):
+   Vault: http://localhost:${config.port}/vault
+   Lore: http://localhost:${config.port}/vault/lore
+   Legions: http://localhost:${config.port}/vault/legions
+   Contracts: http://localhost:${config.port}/vault/contracts
+   Multipliers: http://localhost:${config.port}/vault/multipliers
+   Harvester: http://localhost:${config.port}/vault/harvester
 
 ═══════════════════════════════════════════════════════════════════════
 `);
