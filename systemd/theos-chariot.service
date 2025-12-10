@@ -1,0 +1,18 @@
+[Unit]
+Description=THEOS Chariot Webhook Server
+After=network.target
+
+[Service]
+Type=simple
+User=theos
+WorkingDirectory=/opt/theos-chariot
+Environment=NODE_ENV=production
+EnvironmentFile=/opt/theos-chariot/.env
+ExecStart=/usr/bin/node /opt/theos-chariot/webhook-server.js
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
